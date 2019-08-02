@@ -5,6 +5,7 @@ const passport = require('passport')
 const bodyParser = require('body-parser')
 const keys = require('./config/keys')
 require('./models/user')
+require('./models/survey')
 require('./services/passport')
 
 mongoose.connect(keys.mongoURI)
@@ -28,6 +29,7 @@ app.use(passport.session())
 
 require('./routes/authRoutes')(app) // shorter syntax of above. return function and immediately calls function with app param.
 require('./routes/billingRoutes')(app)
+require('./routes/surveyRoutes')(app)
 
 // // basic test for express to work
 // app.get('/', (req, res) => {
