@@ -1,0 +1,9 @@
+Survey.updateOne({
+    id: surveyId,
+    recipients: {
+        $elemMatch: { email: email, responded: false }
+    }
+}, {
+    $inc: { [choice]: 1 }, //inc is increment property of mongo. [choice] is either 'yes' or 'no', not an array
+    $set: { 'recipients.$.responded': true }
+})
